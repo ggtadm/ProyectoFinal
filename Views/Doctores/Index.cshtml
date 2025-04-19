@@ -7,54 +7,59 @@
 }
 
 <div class="container mt-5">
-    <!-- Volver y Agregar Nuevo Doctor -->
+    <!-- Título y botones -->
     <div class="d-flex justify-content-between align-items-center mb-4">
-        <h2 class="mb-0">🩺 Doctores</h2>
+        <h2 class="mb-0 text-primary fw-bold">
+            🩺 Gestión de Doctores
+        </h2>
 
         <div class="d-flex gap-2">
-            <a asp-controller="Home" asp-action="Index" class="btn btn-secondary">
-                ⬅ Volver
+            <a asp-controller="Home" asp-action="Index" class="btn btn-outline-secondary">
+                ⬅ Volver al Menú
             </a>
             <a asp-action="Crear" class="btn btn-success">
-                ➕ Agregar Nuevo Doctor
+                ➕ Nuevo Doctor
             </a>
         </div>
     </div>
 
-    <div class="card shadow-sm">
+    <div class="card shadow border-0 rounded">
         <div class="card-body">
             @if (Model.Any())
             {
-                <table class="table table-bordered table-striped">
-                    <thead class="table-dark">
-                        <tr>
-                            <th>Nombre</th>
-                            <th style="width: 150px;">Acciones</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach (var doctor in Model)
-                        {
+                <div class="table-responsive">
+                    <table class="table table-hover align-middle text-center">
+                        <thead class="table-primary">
                             <tr>
-                                <td>@doctor.Nombre</td>
-                                <td>
-                                    <a asp-action="Editar" asp-route-id="@doctor.DoctorID" class="btn btn-warning btn-sm">
-                                        ✏️ Editar
-                                    </a>
-                                </td>
+                                <th>👨‍⚕️ Nombre del Doctor</th>
+                                <th>⚙️ Acciones</th>
                             </tr>
-                        }
-                    </tbody>
-                </table>
+                        </thead>
+                        <tbody>
+                            @foreach (var doctor in Model)
+                            {
+                                <tr>
+                                    <td>@doctor.Nombre</td>
+                                    <td>
+                                        <a asp-action="Editar" asp-route-id="@doctor.DoctorID" class="btn btn-warning btn-sm">
+                                            ✏️ Editar
+                                        </a>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
             }
             else
             {
-                <div class="alert alert-info">
-                    No hay doctores registrados.
+                <div class="alert alert-warning text-center">
+                    <span class="fw-semibold">🔔 No hay doctores registrados en el sistema.</span>
                 </div>
             }
         </div>
     </div>
 </div>
+
 
 
