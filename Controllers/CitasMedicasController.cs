@@ -47,6 +47,8 @@ public class CitasMedicasController : Controller
 
         if (!_citaDAL.DoctorDisponible(cita.DoctorID, cita.Fecha, cita.CitaID > 0 ? (int?)cita.CitaID : null))
         {
+            // 🔴 Nueva validación visual en el campo de Doctor
+            ModelState.AddModelError("DoctorID", "El doctor ya tiene una cita en esa fecha. Por favor, seleccione otro.");
             ViewBag.Error = "El doctor ya tiene una cita en esa fecha.";
             return View(cita);
         }
