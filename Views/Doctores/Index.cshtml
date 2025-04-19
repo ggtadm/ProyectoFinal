@@ -1,0 +1,60 @@
+@model List<ProyectoFinal.Models.Doctor>
+
+@{
+    ViewBag.Title = "Doctores";
+    ViewBag.MostrarCerrarSesion = true;
+    ViewBag.MostrarVolver = false;
+}
+
+<div class="container mt-5">
+    <!-- Volver y Agregar Nuevo Doctor -->
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2 class="mb-0">🩺 Doctores</h2>
+
+        <div class="d-flex gap-2">
+            <a asp-controller="Home" asp-action="Index" class="btn btn-secondary">
+                ⬅ Volver
+            </a>
+            <a asp-action="Crear" class="btn btn-success">
+                ➕ Agregar Nuevo Doctor
+            </a>
+        </div>
+    </div>
+
+    <div class="card shadow-sm">
+        <div class="card-body">
+            @if (Model.Any())
+            {
+                <table class="table table-bordered table-striped">
+                    <thead class="table-dark">
+                        <tr>
+                            <th>Nombre</th>
+                            <th style="width: 150px;">Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var doctor in Model)
+                        {
+                            <tr>
+                                <td>@doctor.Nombre</td>
+                                <td>
+                                    <a asp-action="Editar" asp-route-id="@doctor.DoctorID" class="btn btn-warning btn-sm">
+                                        ✏️ Editar
+                                    </a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            }
+            else
+            {
+                <div class="alert alert-info">
+                    No hay doctores registrados.
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+

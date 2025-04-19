@@ -1,0 +1,66 @@
+﻿@{
+    Layout = "~/Views/Shared/LayoutLimpio.cshtml";
+    ViewBag.Title = "Bienvenido";
+}
+
+<style>
+    .main-content {
+        min-height: 80vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        animation: fadeIn 1s ease-in-out;
+    }
+
+    @@keyframes fadeIn {
+        from { opacity: 0; transform: translateY(20px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+</style>
+
+
+<style>
+    body {
+        background: linear-gradient(to right, #f8f9fa, #e0eafc);
+    }
+
+    .btn-lg {
+        padding: 14px 28px;
+        font-size: 1.25rem;
+        border-radius: 12px;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+
+    .btn-lg:hover {
+        transform: scale(1.05);
+        box-shadow: 0 6px 16px rgba(0,0,0,0.2);
+    }
+
+    footer {
+        font-size: 0.9rem;
+        color: #6c757d;
+        padding-top: 1rem;
+    }
+</style>
+
+<div class="container main-content text-center">
+    <h1 class="display-4 mb-4">👋 ¡Bienvenido al sistema!</h1>
+    <p class="lead mb-4">Seleccione una opción para continuar:</p>
+
+    <div class="d-flex flex-wrap justify-content-center gap-4">
+        <a asp-controller="CitasMedicas" asp-action="Index" class="btn btn-primary btn-lg">
+            📅 Citas Médicas
+        </a>
+        <a asp-controller="Doctores" asp-action="Index" class="btn btn-success btn-lg">
+            🩺 Doctores
+        </a>
+    </div>
+</div>
+
+
+
+
+
+

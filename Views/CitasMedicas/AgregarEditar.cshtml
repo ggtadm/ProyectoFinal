@@ -1,0 +1,74 @@
+@model ProyectoFinal.Models.CitaMedica
+
+@{
+    ViewBag.Title = Model.CitaID == 0 ? "Agregar Cita" : "Editar Cita";
+
+    // Validación explícita para evitar problemas de null
+    bool mostrarVolver = ViewBag.MostrarVolver != null && (bool)ViewBag.MostrarVolver;
+    bool mostrarCerrarSesion = ViewBag.MostrarCerrarSesion != null && (bool)ViewBag.MostrarCerrarSesion;
+}
+
+<div class="container mt-5">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2 class="mb-0">@ViewBag.Title</h2>
+
+        <div class="d-flex gap-2">
+            
+        </div>
+    </div>
+
+    <div class="card shadow-sm">
+        <div class="card-body">
+            <form asp-action="AgregarEditar" method="post">
+                <input type="hidden" asp-for="CitaID" />
+
+                <div class="mb-3">
+                    <label asp-for="Paciente" class="form-label">👤 Paciente:</label>
+                    <input asp-for="Paciente" class="form-control" />
+                    <span asp-validation-for="Paciente" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="DoctorID" class="form-label">🩺 Doctor:</label>
+                    <select asp-for="DoctorID" class="form-select"
+                            asp-items='@(new SelectList(ViewBag.Doctores, "DoctorID", "Nombre"))'>
+                        <option value="">-- Seleccione --</option>
+                    </select>
+                    <span asp-validation-for="DoctorID" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="Fecha" class="form-label">📅 Fecha:</label>
+                    <input asp-for="Fecha" type="date" class="form-control" />
+                    <span asp-validation-for="Fecha" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="Motivo" class="form-label">📝 Motivo:</label>
+                    <input asp-for="Motivo" class="form-control" />
+                    <span asp-validation-for="Motivo" class="text-danger"></span>
+                </div>
+
+                <div class="d-flex justify-content-start gap-2">
+                    <button type="submit" class="btn btn-primary">
+                        💾 Guardar
+                    </button>
+
+                    @if (mostrarVolver)
+                    {
+                        <a asp-action="Index" class="btn btn-secondary">
+                            ⬅ Volver
+                        </a>
+                    }
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
+
+
+
