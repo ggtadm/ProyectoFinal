@@ -1,51 +1,70 @@
 @model List<ProyectoFinal.Models.CitaMedica>
 
-<div class="container mt-4">
-    <div class="d-flex justify-content-end mb-3">
-        <a asp-controller="Home" asp-action="Index" class="btn btn-secondary">
-            ⬅ Volver
-        </a>
-    </div>
-
+<div class="container mt-5">
+    <!-- Encabezado con título y botones -->
     <div class="d-flex justify-content-between align-items-center mb-4">
-        <h2 class="mb-0">📅 Citas Médicas</h2>
-        <a asp-action="AgregarEditar" class="btn btn-success">
-            ➕ Agregar Nueva Cita
-        </a>
+        <h2 class="mb-0 text-primary fw-bold">
+            📅 Citas Médicas
+        </h2>
+        <div class="d-flex gap-2">
+            <a asp-action="AgregarEditar" class="btn btn-success shadow-sm">
+                ➕ Nueva Cita
+            </a>
+            <a asp-controller="Home" asp-action="Index" class="btn btn-outline-secondary shadow-sm">
+                ⬅ Menú Principal
+            </a>
+        </div>
     </div>
 
-    <div class="table-responsive">
-        <table class="table table-bordered table-hover align-middle">
-            <thead class="table-dark text-center">
-                <tr>
-                    <th>Paciente</th>
-                    <th>Doctor</th>
-                    <th>Fecha</th>
-                    <th>Motivo</th>
-                    <th>Acciones</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var cita in Model)
-                {
-                    <tr>
-                        <td>@cita.Paciente</td>
-                        <td>@cita.NombreDoctor</td>
-                        <td>@cita.Fecha.ToShortDateString()</td>
-                        <td>@cita.Motivo</td>
-                        <td class="text-center">
-                            <a asp-action="AgregarEditar" asp-route-id="@cita.CitaID" class="btn btn-sm btn-warning me-2">
-                                ✏️ Editar
-                            </a>
-                            <a asp-action="Eliminar" asp-route-id="@cita.CitaID" class="btn btn-sm btn-danger" onclick="return confirm('¿Desea eliminar esta cita?')">
-                                🗑️ Eliminar
-                            </a>
-                        </td>
-                    </tr>
-                }
-            </tbody>
-        </table>
+    <!-- Tabla de citas -->
+    <div class="card shadow-sm">
+        <div class="card-body">
+            @if (Model.Any())
+            {
+                <div class="table-responsive">
+                    <table class="table table-hover table-bordered align-middle">
+                        <thead class="table-primary text-center">
+                            <tr>
+                                <th>Paciente</th>
+                                <th>Doctor</th>
+                                <th>Fecha</th>
+                                <th>Motivo</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var cita in Model)
+                            {
+                                <tr>
+                                    <td>@cita.Paciente</td>
+                                    <td>@cita.NombreDoctor</td>
+                                    <td>@cita.Fecha.ToString("dd/MM/yyyy")</td>
+                                    <td>@cita.Motivo</td>
+                                    <td class="text-center">
+                                        <a asp-action="AgregarEditar" asp-route-id="@cita.CitaID" class="btn btn-sm btn-warning me-2 shadow-sm">
+                                            ✏️ Editar
+                                        </a>
+                                        <a asp-action="Eliminar" asp-route-id="@cita.CitaID"
+                                           class="btn btn-sm btn-danger shadow-sm"
+                                           onclick="return confirm('¿Está seguro de eliminar esta cita?')">
+                                            🗑️ Eliminar
+                                        </a>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            }
+            else
+            {
+                <div class="alert alert-info text-center">
+                    No hay citas registradas.
+                </div>
+            }
+        </div>
     </div>
 </div>
+
 
 
