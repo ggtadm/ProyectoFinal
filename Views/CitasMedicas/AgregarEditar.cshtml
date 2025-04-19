@@ -2,20 +2,10 @@
 
 @{
     ViewBag.Title = Model.CitaID == 0 ? "Agregar Cita" : "Editar Cita";
-
-    // Validación explícita para evitar problemas de null
-    bool mostrarVolver = ViewBag.MostrarVolver != null && (bool)ViewBag.MostrarVolver;
-    bool mostrarCerrarSesion = ViewBag.MostrarCerrarSesion != null && (bool)ViewBag.MostrarCerrarSesion;
 }
 
 <div class="container mt-5">
-    <div class="d-flex justify-content-between align-items-center mb-4">
-        <h2 class="mb-0">@ViewBag.Title</h2>
-
-        <div class="d-flex gap-2">
-            
-        </div>
-    </div>
+    <h2 class="mb-4">@ViewBag.Title</h2>
 
     <div class="card shadow-sm">
         <div class="card-body">
@@ -49,18 +39,9 @@
                     <span asp-validation-for="Motivo" class="text-danger"></span>
                 </div>
 
-                <div class="d-flex justify-content-start gap-2">
-                    <button type="submit" class="btn btn-primary">
-                        💾 Guardar
-                    </button>
-
-                    @if (mostrarVolver)
-                    {
-                        <a asp-action="Index" class="btn btn-secondary">
-                            ⬅ Volver
-                        </a>
-                    }
-                </div>
+                <button type="submit" class="btn btn-primary">
+                    💾 Guardar
+                </button>
             </form>
         </div>
     </div>
@@ -69,6 +50,7 @@
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />
 }
+
 
 
 

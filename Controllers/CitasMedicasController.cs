@@ -9,7 +9,6 @@ public class CitasMedicasController : Controller
     public CitasMedicasController(IConfiguration config)
     {
         var cadena = config.GetConnectionString("ConexionProyectoFinal") ?? string.Empty;
-
         _citaDAL = new CitaMedicaDAL(cadena);
         _doctorDAL = new DoctorDAL(cadena);
     }
@@ -25,6 +24,7 @@ public class CitasMedicasController : Controller
     {
         ViewBag.MostrarCerrarSesion = true;
         ViewBag.MostrarVolver = true;
+        ViewBag.UrlVolver = Url.Action("Index", "CitasMedicas");
 
         ViewBag.Doctores = _doctorDAL.ObtenerTodos();
         return View(id == null ? new CitaMedica() : _citaDAL.ObtenerPorId(id.Value));
@@ -35,6 +35,7 @@ public class CitasMedicasController : Controller
     {
         ViewBag.MostrarCerrarSesion = true;
         ViewBag.MostrarVolver = true;
+        ViewBag.UrlVolver = Url.Action("Index", "CitasMedicas");
 
         ViewBag.Doctores = _doctorDAL.ObtenerTodos();
 
@@ -62,9 +63,9 @@ public class CitasMedicasController : Controller
     {
         ViewBag.MostrarCerrarSesion = true;
         ViewBag.MostrarVolver = true;
+        ViewBag.UrlVolver = Url.Action("Index", "CitasMedicas");
 
         _citaDAL.Eliminar(id);
         return RedirectToAction("Index");
     }
 }
-

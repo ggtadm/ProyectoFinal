@@ -24,6 +24,8 @@ public class DoctoresController : Controller
     {
         ViewBag.MostrarCerrarSesion = true;
         ViewBag.MostrarVolver = true;
+        ViewBag.UrlVolver = Url.Action("Index", "Doctores");
+
         return View(new Doctor());
     }
 
@@ -33,6 +35,7 @@ public class DoctoresController : Controller
     {
         ViewBag.MostrarCerrarSesion = true;
         ViewBag.MostrarVolver = true;
+        ViewBag.UrlVolver = Url.Action("Index", "Doctores");
 
         if (!ModelState.IsValid)
         {
@@ -49,6 +52,8 @@ public class DoctoresController : Controller
     {
         ViewBag.MostrarCerrarSesion = true;
         ViewBag.MostrarVolver = true;
+        ViewBag.UrlVolver = Url.Action("Index", "Doctores");
+
         return View(_doctorDAL.ObtenerPorId(id));
     }
 
@@ -58,6 +63,7 @@ public class DoctoresController : Controller
     {
         ViewBag.MostrarCerrarSesion = true;
         ViewBag.MostrarVolver = true;
+        ViewBag.UrlVolver = Url.Action("Index", "Doctores");
 
         if (!ModelState.IsValid)
         {
@@ -69,5 +75,6 @@ public class DoctoresController : Controller
         return RedirectToAction("Index");
     }
 }
+
 
 
