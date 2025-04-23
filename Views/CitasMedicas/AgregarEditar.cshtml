@@ -38,7 +38,8 @@
 
                 <div class="mb-3">
                     <label asp-for="Fecha" class="form-label">📅 Fecha:</label>
-                    <input asp-for="Fecha" type="date" class="form-control" />
+                    <input asp-for="Fecha" type="date" class="form-control"
+                           min="@DateTime.Today.ToString("yyyy-MM-dd")" />
                     <span asp-validation-for="Fecha" class="text-danger"></span>
                 </div>
 

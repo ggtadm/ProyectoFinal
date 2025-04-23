@@ -4,25 +4,22 @@
 }
 
 <style>
+    @@keyframes fadeInScale {
+        from { opacity: 0; transform: scale(0.9); }
+        to { opacity: 1; transform: scale(1); }
+    }
+
     .main-content {
         min-height: 80vh;
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        animation: fadeIn 1s ease-in-out;
+        animation: fadeInScale 0.7s ease-out;
     }
 
-    @@keyframes fadeIn {
-        from { opacity: 0; transform: translateY(20px); }
-        to { opacity: 1; transform: translateY(0); }
-    }
-</style>
-
-
-<style>
     body {
-        background: linear-gradient(to right, #f8f9fa, #e0eafc);
+        background: linear-gradient(to right, #f0f4ff, #eaf6ff);
     }
 
     .btn-lg {
@@ -35,21 +32,25 @@
 
     .btn-lg:hover {
         transform: scale(1.05);
-        box-shadow: 0 6px 16px rgba(0,0,0,0.2);
-    }
-
-    footer {
-        font-size: 0.9rem;
-        color: #6c757d;
-        padding-top: 1rem;
+        box-shadow: 0 8px 20px rgba(0,0,0,0.2);
     }
 </style>
 
+<!-- Botón "Cerrar Sesión" con modal -->
+<div class="position-absolute top-0 end-0 mt-3 me-3">
+    <button class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#modalCerrarSesion">
+        🔒 Cerrar Sesión
+    </button>
+</div>
+
+<!-- Contenido principal -->
 <div class="container main-content text-center">
-    <h1 class="display-4 mb-4">👋 ¡Bienvenido al sistema!</h1>
+    <h1 class="display-4 mb-4">
+        <span class="fs-1">👋</span> ¡Bienvenido al sistema!
+    </h1>
     <p class="lead mb-4">Seleccione una opción para continuar:</p>
 
-    <div class="d-flex flex-wrap justify-content-center gap-4">
+    <div class="d-flex flex-wrap justify-content-center gap-4 flex-column flex-md-row">
         <a asp-controller="CitasMedicas" asp-action="Index" class="btn btn-primary btn-lg">
             📅 Citas Médicas
         </a>
@@ -58,6 +59,34 @@
         </a>
     </div>
 </div>
+
+<!-- Modal de confirmación para cerrar sesión -->
+<div class="modal fade" id="modalCerrarSesion" tabindex="-1" aria-labelledby="modalCerrarSesionLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header bg-danger text-white">
+                <h5 class="modal-title" id="modalCerrarSesionLabel">Confirmar Cierre de Sesión</h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+            </div>
+            <div class="modal-body text-center">
+                ¿Está seguro de que desea cerrar sesión?
+            </div>
+            <div class="modal-footer justify-content-center">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                <a href="@Url.Action("CerrarSesion", "Login")" class="btn btn-danger">Cerrar Sesión</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+}
+
+
+
+
+
 
 
 

@@ -12,7 +12,7 @@ namespace ProyectoFinal.DataAccess
             cadenaConexion = cadena;
         }
 
-        // Método para validar usuario y devolver un objeto Usuario si existe
+        //  devolver un objeto Usuario si existe
         public Usuario? ValidarUsuario(string nombreUsuario, string contrasena)
         {
             Usuario? usuario = null;

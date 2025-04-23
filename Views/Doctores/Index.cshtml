@@ -7,14 +7,14 @@
 }
 
 <div class="container mt-5">
-    <!-- Título y botones -->
+    
     <div class="d-flex justify-content-between align-items-center mb-4">
         <h2 class="mb-0 text-primary fw-bold">
             🩺 Gestión de Doctores
         </h2>
 
         <div class="d-flex gap-2">
-            <a asp-controller="Home" asp-action="Index" class="btn btn-outline-secondary">
+            <a href="#" class="btn btn-outline-secondary" onclick="return confirmarIrAlMenu();">
                 ⬅ Volver al Menú
             </a>
             <a asp-action="Crear" class="btn btn-success">
@@ -60,6 +60,18 @@
         </div>
     </div>
 </div>
+
+@section Scripts {
+    <script>
+        function confirmarIrAlMenu() {
+            if (confirm("¿Estás seguro de que deseas volver al menú principal?")) {
+                window.location.href = "/Home/Index";
+                return false;
+            }
+            return false;
+        }
+    </script>
+}
 
 
 

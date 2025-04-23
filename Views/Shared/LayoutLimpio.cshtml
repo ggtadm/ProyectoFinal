@@ -46,12 +46,13 @@
                 <a href="javascript:history.back()" class="btn btn-outline-secondary btn-sm">⬅ Volver</a>
             }
 
-            @if (ViewBag.MostrarCerrarSesion == true)
+            @* Eliminamos este botón para que solo se use el del modal en la vista principal *@
+            @* if (ViewBag.MostrarCerrarSesion == true)
             {
                 <form asp-controller="Login" asp-action="Logout" method="post" class="d-inline">
                     <button type="submit" class="btn btn-outline-danger btn-sm">🔒 Cerrar Sesión</button>
                 </form>
-            }
+            } *@
         </div>
 
         @RenderBody()
@@ -60,6 +61,10 @@
     <footer>
         © 2025 - Citas Médicas - Todos los derechos reservados
     </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    @RenderSection("Scripts", required: false)
 </body>
 </html>
+
 

@@ -44,7 +44,7 @@ public class CitaMedicaDAL
         return lista;
     }
 
-    // ✅ Corrección: método puede retornar null explícitamente con '?'
+    
     public CitaMedica? ObtenerPorId(int id)
     {
         CitaMedica? cita = null;
@@ -66,7 +66,7 @@ public class CitaMedicaDAL
                         DoctorID = (int)dr["DoctorID"],
                         Fecha = (DateTime)dr["Fecha"],
                         Motivo = dr["Motivo"]?.ToString() ?? string.Empty,
-                        NombreDoctor = string.Empty // no viene en este query, lo inicializamos vacío
+                        NombreDoctor = string.Empty 
                     };
                 }
             }

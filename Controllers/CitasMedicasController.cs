@@ -27,7 +27,10 @@ public class CitasMedicasController : Controller
         ViewBag.UrlVolver = Url.Action("Index", "CitasMedicas");
 
         ViewBag.Doctores = _doctorDAL.ObtenerTodos();
-        return View(id == null ? new CitaMedica() : _citaDAL.ObtenerPorId(id.Value));
+
+        //fecha actual si es una nueva cita
+        var model = id == null ? new CitaMedica { Fecha = DateTime.Today } : _citaDAL.ObtenerPorId(id.Value);
+        return View(model);
     }
 
     [HttpPost]
@@ -47,7 +50,7 @@ public class CitasMedicasController : Controller
 
         if (!_citaDAL.DoctorDisponible(cita.DoctorID, cita.Fecha, cita.CitaID > 0 ? (int?)cita.CitaID : null))
         {
-            // 🔴 Nueva validación visual en el campo de Doctor
+            // validación visual en el campo de Doctor
             ModelState.AddModelError("DoctorID", "El doctor ya tiene una cita en esa fecha. Por favor, seleccione otro.");
             ViewBag.Error = "El doctor ya tiene una cita en esa fecha.";
             return View(cita);
@@ -71,3 +74,4 @@ public class CitasMedicasController : Controller
         return RedirectToAction("Index");
     }
 }
+
