@@ -73,7 +73,8 @@
             </div>
             <div class="modal-footer justify-content-center">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                <a href="@Url.Action("CerrarSesion", "Login")" class="btn btn-danger">Cerrar Sesión</a>
+                <!-- ✅ Corrección aplicada aquí -->
+                <a href="@Url.Action("Logout", "Login")" class="btn btn-danger">Cerrar Sesión</a>
             </div>
         </div>
     </div>
