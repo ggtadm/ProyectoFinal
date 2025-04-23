@@ -36,7 +36,7 @@
     }
 </style>
 
-<!-- Botón "Cerrar Sesión" con modal -->
+<!-- Botón "Cerrar Sesión" -->
 <div class="position-absolute top-0 end-0 mt-3 me-3">
     <button class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#modalCerrarSesion">
         🔒 Cerrar Sesión
@@ -60,7 +60,7 @@
     </div>
 </div>
 
-<!-- Modal de confirmación para cerrar sesión -->
+<!-- confirmación para cerrar sesión -->
 <div class="modal fade" id="modalCerrarSesion" tabindex="-1" aria-labelledby="modalCerrarSesionLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
@@ -73,7 +73,7 @@
             </div>
             <div class="modal-footer justify-content-center">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                <!-- ✅ Corrección aplicada aquí -->
+                
                 <a href="@Url.Action("Logout", "Login")" class="btn btn-danger">Cerrar Sesión</a>
             </div>
         </div>
